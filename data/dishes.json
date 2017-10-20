@@ -2,17 +2,17 @@
   {
     "name": "Pizza",
     "image": "https://i.imgur.com/eTmWoAN.png",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    "description": "Pizza is a yeasted flatbread typically topped with tomato sauce and cheese and baked in an oven. It is commonly topped with a selection of meats, vegetables and condimentsc"
   },
   {
     "name": "Salad",
     "image": "https://i.imgur.com/DupGBz5.jpg",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    "description": "A salad is a dish consisting of a mixture of small pieces of food, usually featuring vegetables.[1][2] They are typically served at room temperature or chilled, with notable exceptions such as south German potato salad which is served warm. Salads may contain virtually any type of ready-to-eat food."
   },
   {
     "name": "Sweet Potato",
     "image": "https://i.imgur.com/hGraGyR.jpg",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    "description": "The sweet potato (Ipomoea batatas) is a dicotyledonous plant that belongs to the bindweed or morning glory family, Convolvulaceae. Its large, starchy, sweet-tasting, tuberous roots are a root vegetable.[1][2] The young leaves and shoots are sometimes eaten as greens. The sweet potato is only distantly related to the potato (Solanum tuberosum) and does not belong to the nightshade family, Solanaceae, but both families belong to the same taxonomic order, the Solanales."
   },
   {
     "name": "Gnocchi",

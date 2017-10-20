@@ -26,11 +26,11 @@ The users that go on your websites will have access to 4 possible routes:
 - `/new-dish`: Display a form page to add a new dish
 
 **Example of page seen on "/dishes"**
-![/dishes](http://i.imgur.com/qw1ADPz.png)
+![/dishes](https://i.imgur.com/qw1ADPz.png)
 
 
 **Example of page seen on "/dishes/598c147d82ff710a38fd6027"**
-![/dishes/:dishId](http://i.imgur.com/SFRNUFe.png)
+![/dishes/:dishId](https://i.imgur.com/SFRNUFe.png)
 
 
 
@@ -89,35 +89,41 @@ To help you creating the database, there are 2 files with some data: _data/dishe
 
 ## Iterations
 
-### Iteration 1 | Creating your first endpoint
+### Iteration 1 | Initialize and populate your database
 
-To start, you will create an endpoint to list all dishes.
+To start, you will populate your database based on the _data_ folder.
 
-For that, you can:
+For that you can:
 - Initialize a new Express project inside _starter-code/server/_ folder
 - Create your models `Dish` and `Ingredient`
-- Populate your database with _data/dishes.json_ and _data/ingredients.json_ 
-- Create the endpoint `GET /api/dishes`.
+- Populate your database with a _bin/seeds.js_ file based on _data/dishes.json_ and _data/ingredients.json_ 
 
-At the end of this iteration, you should see the following result when you go on  `localhost:3000/api/dishes`:
-```json
+
+### Iteration 2 | Creating your first endpoint
+
+Now you will create an endpoint to list all dishes: `GET /api/dishes`.
+
+At the end of this iteration, you should see the following result when you go on  `http://localhost:3000/api/dishes`:
+```json5
 [
   {
     "_id": "598c147d82ff710a38fd6027",
     "name": "Pizza",
-    "image": "https://i.imgur.com/eTmWoAN.png"
+    "image": "https://i.imgur.com/eTmWoAN.png",
+    "description": "Pizza is a yeasted flatbread typically topped with tomato sauce and cheese and baked in an oven. It is commonly topped with a selection of meats, vegetables and condimentsc"
   },
   {
     "_id": "598c147d82ff710a38fd6029",
     "name": "Sweet Potato",
-    "image": "https://i.imgur.com/hGraGyR.jpg"
+    "image": "https://i.imgur.com/hGraGyR.jpg",
+    "description": "A salad is a dish consisting of a mixture of small pieces of food, usually featuring vegetables.[1][2] They are typically served at room temperature or chilled, with notable exceptions such as south German potato salad which is served warm. Salads may contain virtually any type of ready-to-eat food."
   },
-  ...
+  //...
 ]
 ```
 
 
-### Iteration 2 | Listing dishes
+### Iteration 3 | Listing dishes
 
 Having a link to see all dishes in a JSON is a first good step and now we are going to use a Vue application. That's why we are now creating a dishes page (`/dishes`) that will display all dishes in a list, with their names and images.
 
@@ -128,14 +134,14 @@ In that iteration, we recommand you to:
 - Redirect the home page (`/`) to `/dishes`
 
 
-### Iteration 3 | Show one dish details
+### Iteration 4 | Show one dish details
 
 You now have a list of dishes, it's time to link them to a detail page.
 
 On your list of dishes page, create a link to `/dishes/:dishId` that displays the name, the image and the description of a specific dish. You should also create an "_Edit description_" button just after your description.
 
 
-### Iteration 4 | Edit the description of a dish
+### Iteration 5 | Edit the description of a dish
 
 In this iteration, we are going to edit the description without changing the page!
 
@@ -147,7 +153,7 @@ In term of user experience, the scenario should be the following:
 For that, you will probably need to create a `PUT /api/dished/:dishId` endpoint.
 
 
-### Iteration 5 | List all ingredients
+### Iteration 6 | List all ingredients
 
 A dish detail page is nice, but we're missing one important piece: *ingredients*.
 
@@ -164,7 +170,7 @@ In your list of all ingredients, you should display:
 - A "Add ingredient" button (will be used in the next iteration)
 
 
-### Iteration 6 | Add ingredient to dish
+### Iteration 7 | Add ingredient to dish
 
 Create a function in the single dish component. When someone clicks the "Add ingredient" button from the previous iteration, it should add the ingredient to the dish and display it.
 
@@ -177,7 +183,7 @@ The API endpoint is a POST to `'/drinks/:drinkId/ingredients/:id/add'`. It also 
 Add a list of a dish's ingredients to the single dish component. Upon successfully adding the ingredient to the dish, display the ingredient in the list.
 
 
-### Iteration 7 | Bonus | Creating New Ingredients & Dishes
+### Iteration 8 | Bonus | Creating New Ingredients & Dishes
 
 Create a new route for adding new dishes. Add a link in the home page to display a form. This form will make a POST request to `/dishes` with a `name`, `image`, and `description`.
 
@@ -189,10 +195,19 @@ In addition, create a route on the home page to display a form to create a new i
 
 You will find the solution inside the folder "_solution-code-XX_" where "_XX_" is the number of the iteration.
 
-### Iteration 1 | Creating your first endpoint
+### Iteration 1 | Populate your database
 
-You should do these commands
-```
+You have two ways to populate your databse:
+1. Use `mongoinsert` to import your documents: 
+    - `$ mongoimport -d lab-vue-express-recipes -c dishes --file data/dishes.json --jsonArray`
+    - `$ mongoimport -d lab-vue-express-recipes -c ingredients --file data/ingredients.json --jsonArray`
+2. Use a seed file
+
+The second option takes more time but this is what we are going to see. We will also start to create the express project with our `Dish` and `Ingredient` models.
+
+
+You should do these commands:
+```bash
 $ git clone https://github.com/ta-web-paris/lab-vuejs-express-recipes.git
 $ cd lab-vuejs-express-recipes
 $ cd starter-code
@@ -219,6 +234,123 @@ $ npm run dev
 ```
 
 Now, your project should run on port 3000 (the port is defined in "_server/bin/www_"). You can check it by going on [http://localhost:3000](http://localhost:3000).
+
+
+We are now ready to create our models `Dish` and `Ingredient` inside _starter-code/server/models/_. 
+
+```javascript
+// ----- server/models/ingredient.js ----- 
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const IngredientSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  unity: String
+});
+module.exports = mongoose.model('Ingredient', IngredientSchema);
+```
+
+```javascript
+// ----- server/models/dish.js ----- 
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const DishSchema = new Schema({
+  name: {
+    type: String,
+    required: [true, 'name is required']
+  },
+  description: {
+    type: String,
+    required: [true, 'description is required']
+  },
+  image: String,
+  ingredients: [
+    {
+      ingredient: {
+        type: Schema.Types.ObjectId,
+        ref: 'Ingredient'
+      },
+      quantity: Number,
+      _id: false
+    }
+  ]
+});
+module.exports = mongoose.model('Dish', DishSchema);
+```
+
+
+```javascript
+// ----- server/bin/seeds.js ----- 
+const mongoose = require('mongoose');
+const Ingredient = require('../models/ingredient.js');
+const Dish = require('../models/dish.js');
+const dataIngredients = require('../../../data/ingredients.json');
+const dataDishes = require('../../../data/dishes.json');
+
+mongoose.connect('mongodb://localhost/lab-vue-express-recipes', {useMongoClient: true});
+
+// 1st: remove all ingredients
+Ingredient.remove({}, function(err) { 
+  if (err) {
+    throw err;
+  }
+  console.log("All ingredients are removed");
+  // 2nd: remove all dishes
+  Dish.remove({}, function(err) {
+    if (err) {
+      throw err;
+    }
+    console.log("All dished are removed");
+    
+    // 3rd: add all ingredients
+    Ingredient.create(dataIngredients, (err, ingredients) => {
+      if (err) {
+        throw err;
+      }
+      ingredients.forEach((ingredient) => {
+        console.log("New ingredient:", ingredient.name)
+      });
+
+      // 4th: add all dishes
+      Dish.create(dataDishes, (err, dishes) => {
+        if (err) {
+          throw err;
+        }
+      
+        dishes.forEach((dish) => {
+          console.log("New dish:", dish.name)
+        });
+        mongoose.connection.close();
+      });
+    });
+  });
+});
+```
+
+You can also update your _server/package.json_ to add a script to run the seeds.
+
+```json
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "seeds": "node ./bin/seeds.js"
+  },
+```
+
+Don't forget to import mongoose with NPM:
+```bash
+$ npm install mongoose --save
+```
+
+Now you should only run `$ npm run seeds` to populate your database :)
+
+
+### Iteration 2 | Creating your first endpoint
+
 
 Here you have a regular Express application that displays some views. We are going to remove all the views and send JSON for our REST API.
 
@@ -271,32 +403,23 @@ Now, if you go to [http://localhost:3000](http://localhost:3000) or [http://loca
 
 Now we have a working basic REST API!
 
-We are ready to create our models `Dish` and `Ingredient`. 
 
-WIP
-
-[](Population: 2 methods (but each time put a new script))
-[](- mongoinsert)
-[](- seed.js -> don't forget to drop the datbase before)
-[](Don't forget to don't push everything)
-
-
-### Iteration 2 | Listing dishes
+### Iteration 3 | Listing dishes
 WIP
 
 
-### Iteration 3 | Show one dish details
+### Iteration 4 | Show one dish details
 WIP
 
 
-### Iteration 4 | Edit the description of a dish
+### Iteration 5 | Edit the description of a dish
 WIP
 
 
-### Iteration 5 | List all ingredients
+### Iteration 6 | List all ingredients
 WIP
 
 
-### Iteration 6 | Add ingredient to dish
+### Iteration 7 | Add ingredient to dish
 WIP
 
