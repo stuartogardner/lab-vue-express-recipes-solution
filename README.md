@@ -423,11 +423,12 @@ router.get('/api/dishes', function(req, res, next) {
     if (err) {
       next(err);
     }
-    res.json({ dishes: dishes }); 
+    res.json(dishes); 
   })
 });
 ```
 
+Now if you go to [http://localhost:3000/api/dishes](http://localhost:3000/api/dishes), you will see your list of dishes!
 
 
 ### Iteration 3 | Solution | Listing dishes

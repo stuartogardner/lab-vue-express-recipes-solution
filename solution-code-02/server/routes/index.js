@@ -13,7 +13,7 @@ router.get('/api/dishes', function(req, res, next) {
     if (err) {
       next(err);
     }
-    res.json({ dishes: dishes }); 
+    res.json(dishes); 
   })
 });
 
