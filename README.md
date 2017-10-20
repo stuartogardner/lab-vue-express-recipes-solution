@@ -195,7 +195,7 @@ In addition, create a route on the home page to display a form to create a new i
 
 You will find the solution inside the folder "_solution-code-XX_" where "_XX_" is the number of the iteration.
 
-### Iteration 1 | Populate your database
+### Iteration 1 | Solution | Populate your database
 
 You have two ways to populate your databse:
 1. Use `mongoinsert` to import your documents: 
@@ -349,10 +349,12 @@ $ npm install mongoose --save
 Now you should only run `$ npm run seeds` to populate your database :)
 
 
-### Iteration 2 | Creating your first endpoint
+### Iteration 2 | Solution | Creating your first endpoint
+
+Before creating an endpoint to list all dishes (`GET /api/dishes`), we will start with a more basic one (`GET /`) that only renders `{ "text": "Hello world!" }`.
 
 
-Here you have a regular Express application that displays some views. We are going to remove all the views and send JSON for our REST API.
+At the moment, you have a regular Express application that displays some views. We are going to remove all the views and send JSON for our REST API.
 
 First, remove "_server/public/_", "_server/views/_" and "_server/routes/users.js_".
 
@@ -401,25 +403,49 @@ Now, if you go to [http://localhost:3000](http://localhost:3000) or [http://loca
 }
 ```
 
-Now we have a working basic REST API!
+Now we have a working basic REST API that handle the request `GET /`!
+
+Let's create an endpoint `GET /api/dishes`. We need to connect with mongoose in our _server/app.js_ and we will need to add a new route in _server/routes/index.js_.
+
+```javascript
+// ----- server/app.js ----- 
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/lab-vue-express-recipes', {useMongoClient: true});
+// ...
+```
+
+```javascript
+// ----- server/routes/index.js ----- 
+// ...
+/* GET all dishes */
+router.get('/api/dishes', function(req, res, next) {
+  Dish.find({}).exec((err, dishes) => {
+    if (err) {
+      next(err);
+    }
+    res.json({ dishes: dishes }); 
+  })
+});
+```
 
 
-### Iteration 3 | Listing dishes
+
+### Iteration 3 | Solution | Listing dishes
 WIP
 
 
-### Iteration 4 | Show one dish details
+### Iteration 4 | Solution | Show one dish details
 WIP
 
 
-### Iteration 5 | Edit the description of a dish
+### Iteration 5 | Solution | Edit the description of a dish
 WIP
 
 
-### Iteration 6 | List all ingredients
+### Iteration 6 | Solution | List all ingredients
 WIP
 
 
-### Iteration 7 | Add ingredient to dish
+### Iteration 7 | Solution | Add ingredient to dish
 WIP
 

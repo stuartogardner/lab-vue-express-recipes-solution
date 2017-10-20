@@ -1,4 +1,5 @@
 var express = require('express');
+const mongoose = require('mongoose');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -7,6 +8,8 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 
 var app = express();
+
+mongoose.connect('mongodb://localhost/lab-vue-express-recipes', {useMongoClient: true});
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
